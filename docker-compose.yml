@@ -49,6 +49,12 @@ services:
     <<: *app
     container_name: ${COMPOSE_PROJECT_NAME:-stage-pivot}-worker
     command: [python, -m, src.worker]
+    environment:
+      DATABASE_URL: mysql+pymysql://stage:${DB_PASSWORD:-stage_local_demo}@db:3306/stage
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: ${JWT_SECRET:-stage-demo-change-in-production-3112}
+      SEED_DEMO: ${SEED_DEMO:-true}
+      PIVOT_LEASE_SECONDS: ${PIVOT_LEASE_SECONDS:-300}
     depends_on:
       db: {condition: service_healthy}
       redis: {condition: service_healthy}

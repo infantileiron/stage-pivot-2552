@@ -1,3 +1,4 @@
 /** @typedef {{id:number,code:string,day:string,venue:string,play:string,channel:string,gross_cents:number,refund_cents:number,fee_cents:number,seats:number,checked:number}} Settlement */
-/** @typedef {{id:number,name:string,row_dim:string,col_dim:string,state:string,result:object}} Pivot */
+/** @typedef {{id:number,name:string,row_dim:string,col_dim:string,state:'queued'|'running'|'done'|'failed'|'cancelled',result:object|null,error:string,attempt:number,retry_count:number,queued_at:string,started_at:string,published_at:string,finished_at:string,worker_id:string,snapshot_checksum:string,has_artifact:boolean,can_retry:boolean,can_cancel:boolean}} Pivot */
+/** @typedef {{id:number,pivot_id:number,from_state:string|null,to_state:string,attempt:number,actor:string,detail:string,created:string}} PivotEvent */
 /** @typedef {{id:number,pivot_id:number,row_key:string,col_key:string,book_cents:number,expected_cents:number,difference_cents:number,status:string,note:string}} Review */
